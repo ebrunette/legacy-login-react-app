@@ -1,11 +1,29 @@
-import './App.css'
+import { Grid, TextField, Typography } from '@mui/material';
 
-function App() {
-  const fileStructure = <div>
-    <div id="header"><h1 style={{color:"White"}}>Hello, world!</h1></div>
-    <a href></a>
-  </div>
-  return fileStructure
-}
-
-export default App;
+export const App = () => (
+  <Grid container sx={{
+    justifyContent: "center"
+  }}>
+    <Grid item>
+      <Typography variant="h1">
+        Welcome to Legacy Boxing!
+      </Typography>
+    </Grid>
+    <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
+      justifyContent: "center"
+    }}>
+      <Grid item>
+        <TextField label="First Name" required></TextField>
+      </Grid>
+      <Grid item>
+        <TextField >Last Name</TextField>
+      </Grid>
+      <Grid item>
+        <TextField>First Name</TextField>
+      </Grid>
+      <Grid item>
+        <TextField>First Name</TextField>
+      </Grid>
+    </Grid>
+  </Grid>
+);
