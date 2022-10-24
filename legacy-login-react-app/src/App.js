@@ -1,13 +1,9 @@
-import { Grid, TextField, Typography, Button, SvgIcon } from '@mui/material';
-import logo from "./assets/ClubProfilePic.JPG" 
+import { Grid, TextField, Typography, Button } from '@mui/material'; 
 
 export const App = () => (
   <Grid container sx={{
     justifyContent: "center"
   }}>
-    <Grid item>
-      <logo></logo>
-    </Grid>
     <Grid item>
       <Typography variant="h1">
         Welcome to Legacy Boxing!
