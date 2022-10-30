@@ -1,43 +1,15 @@
-import { Grid, TextField, Typography, Button } from '@mui/material'; 
+
+import { BrowserRouter as Router,  Routes, Route } from 'react-router-dom'
+import { LoginPage } from './loginPage'
+import { ForgotIds } from './forgotid';
 
 export const App = () => (
-  <Grid container sx={{
-    justifyContent: "center"
-  }}>
-    <Grid item>
-      <Typography variant="h1">
-        Welcome to Legacy Boxing!
-      </Typography>
-    </Grid>
-    <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
-      justifyContent: "center",
-      paddingTop: "1rem",
-      alignItems: "center"
-    }}>
-      <Grid item>
-        <TextField label="Athlete ID" required></TextField>
-      </Grid>
-      <Grid item>
-        <Button>Login</Button>
-      </Grid>
-    </Grid>
-    <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
-      justifyContent: "center",
-      paddingTop: "1rem",
-      alignItems: "center"
-    }}>
-      <Grid item>
-        <Button>Forgot ID</Button>
-      </Grid>
-    </Grid>
-    <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
-      justifyContent: "center",
-      paddingTop: "1rem",
-      alignItems: "center"
-    }}>
-      <Grid item>
-        <Button>New Athlete</Button>
-      </Grid>
-    </Grid>
-  </Grid>
+  <Router>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgotId" element={<ForgotIds/>} />
+      {/* <Route exact path="/newAthlete" element={<NewAthlete/>}/> */}
+    </Routes>
+  </Router>
 );
