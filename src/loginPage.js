@@ -5,8 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
     const navigate = useNavigate()
-    const routeChange = () => {
+    const routeChangeForgotId = () => {
         let path = "/forgotId";
+        navigate(path)
+    }
+    const routeChangeNewAthlete = () => {
+        let path = "/newAthlete";
         navigate(path)
     }
     return <Grid container sx={{
@@ -35,7 +39,7 @@ export const LoginPage = () => {
             alignItems: "center"
         }}>
             <Grid item>
-            <Button onClick={ () => routeChange() }>Forgot ID</Button>
+            <Button onClick={ () => routeChangeForgotId() }>Forgot ID</Button>
             </Grid>
         </Grid>
         <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
@@ -44,7 +48,7 @@ export const LoginPage = () => {
             alignItems: "center"
         }}>
             <Grid item>
-            <Button>New Athlete</Button>
+            <Button onClock={ () => routeChangeNewAthlete() }>New Athlete</Button>
             </Grid>
         </Grid>
     </Grid>  
