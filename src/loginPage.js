@@ -48,7 +48,7 @@ export const LoginPage = () => {
             alignItems: "center"
         }}>
             <Grid item>
-            <Button onClock={ () => routeChangeNewAthlete() }>New Athlete</Button>
+            <Button onClick={ () => routeChangeNewAthlete() }>New Athlete</Button>
             </Grid>
         </Grid>
     </Grid>  
