@@ -1,37 +1,38 @@
-import { Grid, TextField, Typography, Button } from '@mui/material'; 
+import { Grid, TextField, Typography, Button, Input } from '@mui/material'; 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 
-function LoginUser() {
-    const [athleteName, setAthleteName] = useState("Please type in your athlete id.");
+function Login () {
+    const [visibleAthleteName, setVisibleAthleteName] = useState("");
+    const [athleteName, setAthleteName] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [athleteError, setAthleteError] = useState('');
 
-    function ValidateAthlete() {
-        setAthleteName("Eli");
+    function onButtonClick (){
+        setAthleteError('')
+
+
+        if ('' == athleteName) {
+            setAthleteError('Please enter a athlete id.')
+            return
+        }
+        setIsAuthenticated(true)
+        setVisibleAthleteName(athleteName)
+
+        // authentication call will be made here.
+    }
+
+    function handleAthleteInput(e) {
+        setAthleteName(e.target.value)
     }
     return (
         <>
-            <Grid item>
-            <TextField label="Athlete ID" required></TextField>
-            </Grid>
-            <Grid item>
-            <Button onClick={ValidateAthlete}>Login</Button>
-            </Grid>
+        <Grid item>
+            <TextField label="Athlete ID" onChange={handleAthleteInput}></TextField>
+            <Button onClick={onButtonClick}>Login</Button>
+            <div>{isAuthenticated ? <div>{visibleAthleteName} has been logged in!</div>:<></>} </div>
+        </Grid>
         </>
-    )
-}
-
-function LoginUserButton() {
-    const [athleteName, setAthleteName] = useState("Please type in your athlete id.");
-
-    function handleClick() {
-        setAthleteName("Eli");
-    }
-
-    return (
-    <button onClick={handleClick}>
-        {athleteName}
-    </button>
-        
     )
 }
 
@@ -59,11 +60,11 @@ export const LoginPage = () => {
             paddingTop: "1rem",
             alignItems: "center"
         }}>
-            <Grid item>
+            {/* <Grid item>
             <TextField label="Athlete ID" required></TextField>
-            </Grid>
+            </Grid> */}
             <Grid item>
-            <LoginUserButton />
+            <Login />
             </Grid>
         </Grid>
         <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
