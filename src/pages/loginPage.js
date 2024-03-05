@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography, Button, Input } from '@mui/material'; 
+import { Grid, TextField, Typography, Button } from '@mui/material'; 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 
@@ -8,18 +8,29 @@ function Login () {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [athleteError, setAthleteError] = useState('');
 
-    function onButtonClick (){
+    async function onButtonClick (){
         setAthleteError('')
 
 
-        if ('' == athleteName) {
-            setAthleteError('Please enter a athlete id.')
+        if ('' === athleteName) {
+            setAthleteError('Please enter an athlete id.')
             return
         }
-        setIsAuthenticated(true)
-        setVisibleAthleteName(athleteName)
 
-        // authentication call will be made here.
+       fetch("https://westuslbfuncapp.azurewebsites.net/api/get_athlete", {
+            method: "POST",
+            headers: {
+                "x-functions-key": "ZKZq2yGl4OkpjpCjMH-zOabSGWi9hYgS_zm8BkHrULYVAzFu8_QmRg==",
+              },
+            })
+            .then((response) => response.json())
+            .then((data) => {
+            setIsAuthenticated(data.isAuthenticated);
+            })
+            .catch((error) => console.log(error));
+
+        
+        setVisibleAthleteName(athleteName)
     }
 
     function handleAthleteInput(e) {
@@ -30,7 +41,7 @@ function Login () {
         <Grid item>
             <TextField label="Athlete ID" onChange={handleAthleteInput}></TextField>
             <Button onClick={onButtonClick}>Login</Button>
-            <div>{isAuthenticated ? <div>{visibleAthleteName} has been logged in!</div>:<></>} </div>
+            <div>{isAuthenticated ? <div>{visibleAthleteName} has been logged in!</div>:<>{athleteError}</>} </div>
         </Grid>
         </>
     )
