@@ -20,9 +20,13 @@ function Login () {
        fetch("https://westuslbfuncapp.azurewebsites.net/api/get_athlete", {
             method: "POST",
             headers: {
+                'Content-Type': 'application/json',
                 "x-functions-key": "ZKZq2yGl4OkpjpCjMH-zOabSGWi9hYgS_zm8BkHrULYVAzFu8_QmRg==",
               },
-            })
+            body: JSON.stringify({title: 'React POST Request'})
+
+            }
+            )
             .then((response) => response.json())
             .then((data) => {
             setIsAuthenticated(data.isAuthenticated);
