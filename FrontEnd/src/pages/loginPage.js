@@ -75,9 +75,6 @@ export const LoginPage = () => {
             paddingTop: "1rem",
             alignItems: "center"
         }}>
-            {/* <Grid item>
-            <TextField label="Athlete ID" required></TextField>
-            </Grid> */}
             <Grid item>
             <Login />
             </Grid>

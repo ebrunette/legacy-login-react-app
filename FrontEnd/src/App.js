@@ -10,7 +10,7 @@ export const App = () => (
       <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/forgotId" element={<ForgotIds/>} />
-      <Route exact path="/newAthlete" element={<NewAthlete/>}/> */
+      <Route exact path="/newAthlete" element={<NewAthlete/>}/>
     </Routes>
   </Router>
 );
