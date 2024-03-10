@@ -8,7 +8,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 
 app = func.FunctionApp()
 
-@app.route(route="get_athlete", auth_level=func.AuthLevel.FUNCTION)
+@app.route(route="login", auth_level=func.AuthLevel.FUNCTION)
 def get_athlete(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
