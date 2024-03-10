@@ -14,8 +14,6 @@ def _login_storage_account():
     account_key = os.environ["STORAGE_ACCOUNT_KEY"]
     connection_string = f"DefaultEndpointsProtocol=https;AccountName={storage_account_name};AccountKey={account_key};EndpointSuffix=core.windows.net"
     
-    
-    
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
     return blob_service_client
 
@@ -26,6 +24,8 @@ def return_athletes():
     container_client = blob_service_client.get_container_client(container_name)
     blob_client = container_client.get_blob_client(blob_name)
 
-    # load to RAM, eg. jupyter notebook
-    athlete_df = pd.read_csv(blob_client.download_blob())
+    if os.environ['ENVIRONMENT'] == 'local':
+        athlete_df = pd.read_csv('./data/web_app.csv')
+    else: 
+        athlete_df = pd.read_csv(blob_client.download_blob())
     return athlete_df
