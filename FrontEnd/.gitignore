@@ -26,3 +26,4 @@ yarn-error.log*
 /venv
 /local.settings.json
 **/__pycache__/*
+**/data/** 
