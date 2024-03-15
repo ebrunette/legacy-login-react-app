@@ -17,7 +17,7 @@ function Login () {
             return
         }
 
-       fetch("https://westuslbfuncapp.azurewebsites.net/api/get_athlete", {
+       fetch("https://westuslbfuncapp.azurewebsites.net/api/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

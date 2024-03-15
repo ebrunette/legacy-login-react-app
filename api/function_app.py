@@ -1,31 +1,37 @@
 import azure.functions as func
-import datetime
 import json
 import logging
-import os
-from helper.storageAccount import login_storage_account
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+
+from helper.storageAccount import return_athletes
 
 app = func.FunctionApp()
-
-@app.route(route="get_athlete", auth_level=func.AuthLevel.FUNCTION)
-def get_athlete(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
-
-    login_storage_account()    
-    name = req.params.get('name')
-    if not name:
+@app.route(route="login", auth_level=func.AuthLevel.ANONYMOUS)
+def login(req: func.HttpRequest) -> func.HttpResponse:
+        isValidated = False
+        athlete_id = None
+        
         try:
             req_body = req.get_json()
         except ValueError:
             pass
         else:
-            name = req_body.get('name')
+            athlete_id = req_body.get('athlete_id')
+        
+        athletes_df = return_athletes()
+        athletes = athletes_df[athletes_df['UserId'] == athlete_id]
+        if len(athletes) == 1:
+            isValidated = True
+            first_name = list(athletes['FirstName'])[0]
+            last_name = list(athletes['LastName'])[0]
 
-    if name:
-        return func.HttpResponse(json.dumps({"isAuthenticated":True}), status_code=200)
-    else:
-        return func.HttpResponse(
-             json.dumps({"isAuthenticated":True}),
-             status_code=200
-        )
+        if isValidated:
+                return func.HttpResponse(json.dumps({"isAuthenticated":True,
+                                                     "athlete_id": athlete_id,
+                                                     "athlete_first_name": first_name, 
+                                                     "athlete_last_name": last_name}), 
+                                         status_code=200)
+        else:
+                return func.HttpResponse(
+                json.dumps({"isAuthenticated":False}),
+                status_code=200
+                )
