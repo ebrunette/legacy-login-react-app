@@ -21,10 +21,16 @@ def login(req: func.HttpRequest) -> func.HttpResponse:
         athletes_df = return_athletes()
         athletes = athletes_df[athletes_df['UserId'] == athlete_id]
         if len(athletes) == 1:
-                isValidated = True
+            isValidated = True
+            first_name = list(athletes['FirstName'])[0]
+            last_name = list(athletes['LastName'])[0]
 
         if isValidated:
-                return func.HttpResponse(json.dumps({"isAuthenticated":True}), status_code=200)
+                return func.HttpResponse(json.dumps({"isAuthenticated":True,
+                                                     "athlete_id": athlete_id,
+                                                     "athlete_first_name": first_name, 
+                                                     "athlete_last_name": last_name}), 
+                                         status_code=200)
         else:
                 return func.HttpResponse(
                 json.dumps({"isAuthenticated":False}),
