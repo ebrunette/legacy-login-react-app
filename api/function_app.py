@@ -16,7 +16,6 @@ def login(req: func.HttpRequest) -> func.HttpResponse:
             pass
         else:
             athlete_id = req_body.get('athlete_id')
-        logging.info(athlete_id)
         
         athletes_df = return_athletes()
         athletes = athletes_df[athletes_df['UserId'] == athlete_id]
