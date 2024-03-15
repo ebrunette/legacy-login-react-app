@@ -1,11 +1,11 @@
 import azure.functions as func
 import json
 import logging
+
 from helper.storageAccount import return_athletes
 
 app = func.FunctionApp()
-
-@app.route(route="login", auth_level=func.AuthLevel.FUNCTION)
+@app.route(route="login", auth_level=func.AuthLevel.ANONYMOUS)
 def login(req: func.HttpRequest) -> func.HttpResponse:
         isValidated = False
         athlete_id = None
@@ -19,8 +19,8 @@ def login(req: func.HttpRequest) -> func.HttpResponse:
         logging.info(athlete_id)
         
         athletes_df = return_athletes()
-        
-        if len(athletes_df[athletes_df['UserId'] == athlete_id]) == 1:
+        athletes = athletes_df[athletes_df['UserId'] == athlete_id]
+        if len(athletes) == 1:
                 isValidated = True
 
         if isValidated:
