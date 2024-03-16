@@ -4,41 +4,37 @@ import { useState } from 'react'
 
 function Login () {
     const [visibleAthleteName, setVisibleAthleteName] = useState("");
-    const [athleteName, setAthleteName] = useState("");
+    const [athleteId, setAthleteId] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [athleteError, setAthleteError] = useState('');
 
     async function onButtonClick (){
         setAthleteError('')
-
-
-        if ('' === athleteName) {
+        if ('' === athleteId) {
             setAthleteError('Please enter an athlete id.')
             return
         }
-
+        
        fetch("https://westuslbfuncapp.azurewebsites.net/api/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 "x-functions-key": "ZKZq2yGl4OkpjpCjMH-zOabSGWi9hYgS_zm8BkHrULYVAzFu8_QmRg==",
               },
-            body: JSON.stringify({title: 'React POST Request'})
-
+            body: JSON.stringify({"athlete_id": Number(athleteId)})
             }
             )
             .then((response) => response.json())
             .then((data) => {
-            setIsAuthenticated(data.isAuthenticated);
+                console.log(data);
+                setIsAuthenticated(data.isAuthenticated);
+                setVisibleAthleteName(data.athlete_first_name)
             })
-            .catch((error) => console.log(error));
-
-        
-        setVisibleAthleteName(athleteName)
+            .catch((error) => console.log(error));        
     }
 
     function handleAthleteInput(e) {
-        setAthleteName(e.target.value)
+        setAthleteId(e.target.value)
     }
     return (
         <>
