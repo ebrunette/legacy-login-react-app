@@ -48,11 +48,11 @@ export const ForgotIds = () => {
     
     function SubmitButton () {
         async function onClick() {
-            fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
+            fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid?code=https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'x-function-key': 'D-JVJFEdZ6qmqIwTeavnJaUgM5Ku3PpaU0gASxQ0AE8lAzFuOX5rYQ==',
+                'x-functions-key': 'D-JVJFEdZ6qmqIwTeavnJaUgM5Ku3PpaU0gASxQ0AE8lAzFuOX5rYQ==',
             },
             body: JSON.stringify({
                 "first_name":athleteFirstName,
