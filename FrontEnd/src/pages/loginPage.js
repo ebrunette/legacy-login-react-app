@@ -19,7 +19,7 @@ function Login () {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                "x-functions-key": "ZKZq2yGl4OkpjpCjMH-zOabSGWi9hYgS_zm8BkHrULYVAzFu8_QmRg==",
+                "x-functions-key": "D-JVJFEdZ6qmqIwTeavnJaUgM5Ku3PpaU0gASxQ0AE8lAzFuOX5rYQ==",
               },
             body: JSON.stringify({"athlete_id": Number(athleteId)})
             }

@@ -35,3 +35,43 @@ def login(req: func.HttpRequest) -> func.HttpResponse:
                 json.dumps({"isAuthenticated":False}),
                 status_code=200
                 )
+
+@app.route(route="forgotid", auth_level=func.AuthLevel.FUNCTION)
+def forgotid(req: func.HttpRequest) -> func.HttpResponse:
+    athlete_id = None
+    
+    try:
+            req_body = req.get_json()
+    except ValueError:
+        pass
+    else:
+        athlete_first_name = req_body.get('first_name')
+        athlete_last_name = req_body.get('last_name')
+        guardian_first_name = req_body.get('guardian_first_name')
+        guardian_last_name = req_body.get('guardian_last_name')
+        if guardian_first_name == "" or guardian_first_name is None: 
+            guardian_first_name = athlete_first_name
+        if guardian_last_name == "" or guardian_last_name is None: 
+            guardian_last_name = athlete_last_name
+        email = req_body.get('email')
+    
+    athletes_df = return_athletes()
+    logging.info(athletes_df.columns)
+    athletes = athletes_df[(athletes_df['FirstName'] == athlete_first_name) & 
+                           (athletes_df['LastName'] == athlete_last_name) & 
+                           (athletes_df['AccountFirstName'] == guardian_first_name) & 
+                           (athletes_df['AccountLastName'] == guardian_last_name)
+                           ]
+
+    if len(athletes) == 1:
+        athlete_id = list(athletes['UserId'])[0]
+            
+    if athlete_id:
+        return func.HttpResponse(json.dumps({"contains_email":False,
+                                                     "athlete_id": athlete_id}), 
+                                         status_code=200)
+    else:
+        return func.HttpResponse(
+             "Please insert a valid first name",
+             status_code=200
+        )
