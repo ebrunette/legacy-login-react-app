@@ -11,6 +11,7 @@ export const ForgotIds = () => {
     const [guardianFirstName, setGuardianFirstName] = useState("");
     const [guardianLastName, setGuardianLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [athleteId, setAthleteId] = useState("")
 
     const routeChangeLoginPage = () => {
         let path = "/login";
@@ -65,14 +66,16 @@ export const ForgotIds = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
+                setAthleteId(data.athlete_id);
             })
         }
     
         return (
             <>
-            <Grid item> 
+            <Grid item alignItems={"center"}> 
                 <Button onClick={onClick}>Submit</Button>
             </Grid>
+            
             </>
         )
     }
@@ -141,6 +144,18 @@ export const ForgotIds = () => {
         </Grid>
         <Grid item> 
             <TextField label="Email" onChange={handleEmailInput}></TextField>
+        </Grid>
+    </Grid>
+    <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
+        justifyContent: "center",
+        paddingTop: "1rem",
+        alignItems: "center"
+    }}>
+        <Grid item> 
+                <div>{
+                athleteId?
+                    <h3>You're Athlete Id is: {athleteId}</h3>:
+                    <></>}</div>
         </Grid>
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
