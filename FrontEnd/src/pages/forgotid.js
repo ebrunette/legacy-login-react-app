@@ -37,15 +37,6 @@ export const ForgotIds = () => {
     function handleEmailInput(e) {
         setEmail(e.target.value)
     }
-
-    function Email () {
-        
-        return (
-            <>
-                
-            </>
-        )
-    }
     
     function SubmitButton () {
         async function onClick() {
