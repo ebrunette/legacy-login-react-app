@@ -17,82 +17,31 @@ export const ForgotIds = () => {
         navigate(path)
     }
 
-    function FirstName () {
-        function handleFirstNameInput(e) {
-            setAthleteFirstName(e.target.value)
-        }
-        return (
-            <>
-            <Grid item>
-                First Name: 
-            </Grid>
-            <Grid item> 
-                <TextField label="First Name" required onChange={handleFirstNameInput}></TextField>
-            </Grid>
-            </>
-        )
+    function handleFirstNameInput(e) {
+        setAthleteFirstName(e.target.value)
+    }
+
+    function handleLastNameInput(e) {
+        setAthleteLastName(e.target.value)
     }
     
-    function LastName () {
-        function handleLastNameInput(e) {
-            setAthleteLastName(e.target.value)
-        }
-        return (
-            <>
-            <Grid item>
-                Last Name: 
-            </Grid>
-            <Grid item> 
-                <TextField label="Last Name" required onChange={handleLastNameInput}></TextField>
-            </Grid>
-            </>
-        )
+    function handleGuardianFirstNameInput(e) {
+        setGuardianFirstName(e.target.value)
+    }
+
+    function handleGuardianLastNameInput(e) {
+        setGuardianLastName(e.target.value)
     }
     
-    function GuardianFirstName () {
-        function handleGuardianFirstNameInput(e) {
-            setGuardianFirstName(e.target.value)
-        }
-        return (
-            <>
-            <Grid item>
-                Guardian First Name: 
-            </Grid>
-            <Grid item> 
-                <TextField label="Guardian First Name" onChange={handleGuardianFirstNameInput} ></TextField>
-            </Grid>
-            </>
-        )
+    function handleEmailInput(e) {
+        setEmail(e.target.value)
     }
-    
-    function GuardianLastName () {
-        function handleGuardianLastNameInput(e) {
-            setGuardianLastName(e.target.value)
-        }
-        return (
-            <>
-            <Grid item>
-                First Name Test: 
-            </Grid>
-            <Grid item> 
-                <TextField label="Guardian Last Name" onChange={handleGuardianLastNameInput}></TextField>
-            </Grid>
-            </>
-        )
-    }
-    
+
     function Email () {
-        function handleEmailInput(e) {
-            setEmail(e.target.value)
-        }
+        
         return (
             <>
-                <Grid item>
-                    Email: 
-                </Grid>
-                <Grid item> 
-                    <TextField label="Email" onChange={handleEmailInput}></TextField>
-                </Grid>    
+                
             </>
         )
     }
@@ -103,7 +52,7 @@ export const ForgotIds = () => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'x-function-key': 'ZKZq2yGl4OkpjpCjMH-zOabSGWi9hYgS_zm8BkHrULYVAzFu8_QmRg==',
+                'x-function-key': 'D-JVJFEdZ6qmqIwTeavnJaUgM5Ku3PpaU0gASxQ0AE8lAzFuOX5rYQ==',
             },
             body: JSON.stringify({
                 "first_name":athleteFirstName,
@@ -139,35 +88,60 @@ export const ForgotIds = () => {
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <FirstName/>
+        <Grid item>
+                First Name: 
+            </Grid>
+            <Grid item> 
+                <TextField label="First Name" required onChange={handleFirstNameInput}></TextField>
+        </Grid>
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <LastName/>
+        <Grid item>
+                Last Name: 
+            </Grid>
+            <Grid item> 
+                <TextField label="Last Name" required onChange={handleLastNameInput}></TextField>
+        </Grid>
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <GuardianFirstName />
+        <Grid item>
+                Guardian First Name: 
+            </Grid>
+            <Grid item> 
+                <TextField label="Guardian First Name" onChange={handleGuardianFirstNameInput} ></TextField>
+        </Grid>
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <GuardianLastName />
+        <Grid item>
+                First Name Test: 
+            </Grid>
+            <Grid item> 
+                <TextField label="Guardian Last Name" onChange={handleGuardianLastNameInput}></TextField>
+        </Grid>
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <Email />
+        <Grid item>
+            Email: 
+        </Grid>
+        <Grid item> 
+            <TextField label="Email" onChange={handleEmailInput}></TextField>
+        </Grid>
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
