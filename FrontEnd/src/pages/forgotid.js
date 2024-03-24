@@ -40,7 +40,7 @@ export const ForgotIds = () => {
     
     function SubmitButton () {
         async function onClick() {
-            fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid?code=https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
+            fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
