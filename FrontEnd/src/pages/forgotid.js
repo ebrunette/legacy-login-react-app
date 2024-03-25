@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 export const ForgotIds = () => {
     const navigate = useNavigate()
+    const [visibleAthleteName, setVisibleAthleteName] = useState("");
     const [athleteFirstName, setAthleteFirstName] = useState("");
     const [athleteLastName, setAthleteLastName] = useState("");
     const [guardianFirstName, setGuardianFirstName] = useState("");
@@ -58,6 +59,7 @@ export const ForgotIds = () => {
             .then((data) => {
                 console.log(data);
                 setAthleteId(data.athlete_id);
+                setVisibleAthleteName(data.athlete_name)
             })
         }
     
