@@ -105,7 +105,7 @@ def newathlete(req: func.HttpRequest) -> func.HttpResponse:
                            ]
     if len(athletes) > 0: 
         logging.info("Athlete already exists.")
-        athlete_id = list(athletes['UserId'])[0]
+        new_athlete_id = list(athletes['UserId'])[0]
     else:
         # write to new athlete file 
         # 
