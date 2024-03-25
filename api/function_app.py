@@ -96,7 +96,6 @@ def newathlete(req: func.HttpRequest) -> func.HttpResponse:
         email = req_body.get('email')
 
     athletes_df = return_athletes()
-    logging.info(len(athletes_df))
     
     athletes = athletes_df[(athletes_df['FirstName'] == athlete_first_name) & 
                            (athletes_df['LastName'] == athlete_last_name) & 
@@ -107,8 +106,7 @@ def newathlete(req: func.HttpRequest) -> func.HttpResponse:
         logging.info("Athlete already exists.")
         new_athlete_id = list(athletes['UserId'])[0]
     else:
-        # write to new athlete file 
-        # 
+        logging.info("New Athlete.")
         max_athlete_id = athletes_df['UserId'].max()
         new_athlete_id = max_athlete_id + 1
         
