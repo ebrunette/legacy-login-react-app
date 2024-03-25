@@ -38,7 +38,7 @@ export const ForgotIds = () => {
         setEmail(e.target.value)
     }
     
-    function SubmitButton () {
+    function SubmitForgotIdButton () {
         async function onClick() {
             fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
             method: "POST",
@@ -66,7 +66,6 @@ export const ForgotIds = () => {
             <Grid item alignItems={"center"}> 
                 <Button onClick={onClick}>Submit</Button>
             </Grid>
-            
             </>
         )
     }
@@ -154,7 +153,7 @@ export const ForgotIds = () => {
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <SubmitButton />
+        <SubmitForgotIdButton />
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
