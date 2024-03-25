@@ -3,7 +3,7 @@ import json
 import logging
 import pandas as pd
 
-from helper.storageAccount import return_athletes
+from helper.storageAccount import return_athletes, write_athletes
 
 app = func.FunctionApp()
 @app.route(route="login", auth_level=func.AuthLevel.ANONYMOUS)
@@ -121,7 +121,7 @@ def newathlete(req: func.HttpRequest) -> func.HttpResponse:
                                         ]], columns=athletes_df.columns)
         final_df = pd.concat([new_athlete_df, 
                               athletes_df], ignore_index= True)
-        final_df.to_csv("./data/web_app.csv", index=False)
+        write_athletes(final_df)
         
     return func.HttpResponse(json.dumps({"athlete_id": str(new_athlete_id),
                                                 "athlete_name": athlete_first_name}), 

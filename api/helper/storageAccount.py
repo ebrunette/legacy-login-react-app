@@ -29,3 +29,17 @@ def return_athletes():
     else: 
         athlete_df = pd.read_csv(blob_client.download_blob())
     return athlete_df
+
+def write_athletes(athlete_df):
+    container_name = "loginappstorage"
+    blob_name = "web_app.csv"
+    blob_service_client = _login_storage_account()
+    container_client = blob_service_client.get_container_client(container_name)
+    
+    
+    if os.environ['ENVIRONMENT'] == 'local':
+        athlete_df = athlete_df.to_csv('./data/web_app.csv')
+    else:
+        output = athlete_df.to_csv(index=False, encoding='utf-8')
+        container_client.upload_blob(blob_name, output, overwrite=True)
+    return athlete_df
