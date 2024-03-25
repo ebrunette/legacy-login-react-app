@@ -42,4 +42,3 @@ def write_athletes(athlete_df):
     else:
         output = athlete_df.to_csv(index=False, encoding='utf-8')
         container_client.upload_blob(blob_name, output, overwrite=True)
-    return athlete_df
