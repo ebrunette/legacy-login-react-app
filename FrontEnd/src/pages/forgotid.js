@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 export const ForgotIds = () => {
     const navigate = useNavigate()
+    const [visibleAthleteName, setVisibleAthleteName] = useState("");
     const [athleteFirstName, setAthleteFirstName] = useState("");
     const [athleteLastName, setAthleteLastName] = useState("");
     const [guardianFirstName, setGuardianFirstName] = useState("");
@@ -38,9 +39,9 @@ export const ForgotIds = () => {
         setEmail(e.target.value)
     }
     
-    function SubmitButton () {
+    function SubmitForgotIdButton () {
         async function onClick() {
-            fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid?code=https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
+            fetch("https://westuslbfuncapp.azurewebsites.net/api/forgotid", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -58,6 +59,7 @@ export const ForgotIds = () => {
             .then((data) => {
                 console.log(data);
                 setAthleteId(data.athlete_id);
+                setVisibleAthleteName(data.athlete_name)
             })
         }
     
@@ -66,7 +68,6 @@ export const ForgotIds = () => {
             <Grid item alignItems={"center"}> 
                 <Button onClick={onClick}>Submit</Button>
             </Grid>
-            
             </>
         )
     }
@@ -154,7 +155,7 @@ export const ForgotIds = () => {
         paddingTop: "1rem",
         alignItems: "center"
     }}>
-        <SubmitButton />
+        <SubmitForgotIdButton />
     </Grid>
     <Grid container item xs={12} columnSpacing={3} rowSpacing={3} sx={{
         justifyContent: "center",
