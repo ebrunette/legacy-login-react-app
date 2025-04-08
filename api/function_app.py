@@ -6,7 +6,8 @@ import pandas as pd
 from helper.storageAccount import return_athletes, write_athletes
 
 app = func.FunctionApp()
-@app.route(route="login", auth_level=func.AuthLevel.ANONYMOUS)
+
+@app.route(route="login", auth_level=func.AuthLevel.FUNCTION)
 def login(req: func.HttpRequest) -> func.HttpResponse:
     isValidated = False
     athlete_id = None
@@ -24,7 +25,6 @@ def login(req: func.HttpRequest) -> func.HttpResponse:
         isValidated = True
         first_name = list(athletes['FirstName'])[0]
         last_name = list(athletes['LastName'])[0]
-
     if isValidated:
             return func.HttpResponse(json.dumps({"isAuthenticated":True,
                                                     "athlete_id": athlete_id,
