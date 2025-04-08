@@ -1,0 +1,23 @@
+
+{
+    "_comment": "# https://json.schemastore.org/function",
+    "bindings": [
+        {
+            "authLevel": "function",
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "route": "ContentPipeline",
+            "methods": [
+                "get",
+                "post"
+            ]
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "res"
+        }
+    ],
+    "scriptFile": "function_app.py"
+}
