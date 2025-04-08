@@ -1,5 +1,4 @@
 import os
-import logging
 import pandas as pd
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
